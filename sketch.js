@@ -1,7 +1,8 @@
 var path,boy,cash,diamonds,jewelry,sword;
 var pathImg,boyImg,cashImg,diamondsImg,jewelryImg,swordImg;
 var treasureCollection = 0;
-var cashG,diamondsG,jewelryG,swordGroup;
+var cashG,diamondsG,jewelryG,swordGroup
+var gameOverImg,gameOver
 
 //Game States
 var PLAY=1;
@@ -15,6 +16,8 @@ function preload(){
   diamondsImg = loadImage("diamonds.png");
   jewelryImg = loadImage("jwell.png");
   swordImg = loadImage("sword.png");
+  gameOverImg = loadImage("gameOver.png");
+  
   
   
 }
@@ -32,6 +35,13 @@ path.velocityY = 4;
 boy = createSprite(70,580,20,20);
 boy.addAnimation("SahilRunning",boyImg);
 boy.scale=0.08;
+
+
+
+//creating gameOver image
+gameOver=createSprite(200,300,20,20);
+gameOver.addImage("appear",gameOverImg);
+gameOver.scale=0.8;
   
   
 cashG=new Group();
@@ -44,8 +54,11 @@ swordGroup=new Group();
 function draw() {
 
   if(gameState===PLAY){
-  background(0);
+  background("Road.png");
+gameOver.visible=false;
+  
   boy.x = World.mouseX;
+
   
   edges= createEdgeSprites();
   boy.collide(edges);
@@ -79,27 +92,29 @@ function draw() {
     }else{
       if(swordGroup.isTouching(boy)) {
         gameState=END;
+
+        gameOver.visible=true;
         
        
-         cashG.destroyEach;
-         diamondsG.destroyEach;
-         jewelryG.destroyEach;
-         swordGroup.destroyEach;
+        // cashG.destroyEach;
+         //diamondsG.destroyEach;
+       //  jewelryG.destroyEach;
+        // swordGroup.destroyEach;
 
-         cashG.destroy();
-         diamondsG.destroy();
-         jewelryG.destroy();
-         swordGroup.destroy();
+         //cashG.destroy();
+        //diamondsG.destroy();
+        // jewelryG.destroy();
+        // swordGroup.destroy();
         
          cashG.destroyEach();
          diamondsG.destroyEach();
          jewelryG.destroyEach();
          swordGroup.destroyEach();
         
-         cashGdestroyEach();
-         diamondsGdestroyEach();
-         jewelryGdestroyEach();
-         swordGroupdestroyEach();
+       //  cashGdestroyEach();
+        // diamondsGdestroyEach();
+         //jewelryGdestroyEach();
+        // swordGroupdestroyEach();
         
         cashG.setVelocityYEach(0);
         diamondsG.setVelocityYEach(0);
